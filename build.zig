@@ -1,4 +1,5 @@
 const std = @import("std");
+const Target = @import("std").Target;
 
 // Although this function looks imperative, note that its job is to
 // declaratively construct a build graph that will be executed by an external
@@ -9,7 +10,7 @@ pub fn build(b: *std.Build) void {
     // means any target is allowed, and the default is native. Other options
     // for restricting supported target set are available.
     var target_query = b.standardTargetOptionsQueryOnly(.{});
-    target_query.cpu_model = &;
+    target_query.cpu_model = &Target.x86.cpu.x86_64;
     const target = b.resolveTargetQuery(target_query);
 
     // Standard optimization options allow the person running `zig build` to select
